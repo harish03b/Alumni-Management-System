@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Jobs by Location or Company</title>
+    <link rel="stylesheet" href="location-search-form-css.css">
+   
+</head>
+<body>
+    <header>
+        <h1 class="aa">Alumni Association</h1>
+        <nav>
+            <ul>
+                <li><a href="alumini.html">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Events</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="Container">
+        <section class="search-form-section">
+            <h2 class="title">Search Jobs by Location or Company</h2>
+            <form id="location-search-form" action="/search" method="post">
+                <div class="search-group">
+                    <label for="locationsearch">Search by Location:</label>
+                    <input type="text" id="locationsearch" name="locationsearch" placeholder="Enter city, state, or country">
+                </div>
+            
+                <div class="search-group">
+                    <label for="companysearch">Search by Company:</label>
+                    <input type="text" id="companysearch" name="companysearch" placeholder="Enter company name">
+                </div>
+            
+                <button type="submit" class="search-btn">Search</button>
+            </form>
+             <div class="container">
+         <h2>All Alumni Data</h2>
+         <br>
+        <!-- Table to display user data -->
+        <table id="user-table">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>User Type</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody id="all-users" ></tbody>
+        </table>
+    </div>
+            
+        </section>
+
+        <aside class="categories-section">
+            <h2>Categories</h2>
+            <ul>
+                <div class="user">
+                    <img class="pm" src="user-management.png" height="200px"/>
+                    <li><br>
+                        <a href="#">User Management</a>
+                    </li>
+                </div>
+
+                <div class="Network">
+                    <img class="NaC" src="Network-People-PNG-File.png" height="200px"/>
+                    <li><a href="networking-career-vertical-html (1).html">Networking & Careers</a></li>
+                </div>
+
+                <div class="Event">
+                    <img class="eNe" src="Events_Management.png"  height="200px"/>
+                    <li><a href="#">Event & Engagement</a></li>
+                </div>
+
+                <div class="Donate">
+                    <img class="don" src="Donation.png" height="200px"/>
+                    <li><br><a href="#">Donations</a></li>
+                </div>
+            </ul>
+        </aside>
+    </main>
+   
+    <script src="script1.js" >
+
+
+    </script>
+        
+</body>
+</html>

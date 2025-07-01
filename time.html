@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Alumni Association</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+    
+        <!-- Navigation Bar -->
+        <header>
+            <h1 class="aa">Alumni Association</h1>
+            <nav>
+                <ul>
+                    <li><a class="back" href="firsteventpage.html">Back</a></li>
+                    <li><a href="alumini.html">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="upcome.html">Events</a></li>
+                    <li><a href="#">Contact</a></li>
+                   
+                </ul>
+            </nav>
+        </header>
+   
+<body>
+
+    <!-- Event Form -->
+   <!-- Main Content -->
+   <div class="container">
+    <!-- Left Section: Events Management -->
+    <div class="events-section">
+        <h2 class="title">Events & Engagement</h2>
+        <div class="form-section">
+            <h2>Create Event</h2>
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title">
+            </div>
+            <div class="form-group">
+                <label for="type">Type</label>
+                <input type="text" id="type" name="type">
+            </div>
+            <div class="form-group">
+                <label for="mode">Mode</label>
+                <select id="mode" name="mode">
+                    <option value="online">Online</option>
+                    <option value="offline">Offline</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date">
+            </div>
+            <div class="form-group">
+                <label for="time">Time</label>
+                <input type="time" id="time" name="time">
+            </div>
+            <div class="form-group">
+                <button type="submit" id="submitBtn">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Section: Categories -->
+    <div class="categories-section">
+        <h2>Categories</h2>
+        <ul>
+            <div class="user">
+                <img class="pm" src="user-management.png">
+                <li><a href="#">User Management</a></li>
+            </div>
+
+            <div class="Network">
+                <img class="NaC" src="Network-People-PNG-File.png">
+                <li><a href="networking-career-vertical-html (1).html">Networking & Careers</a></li>
+            </div>
+
+            <div class="Event">
+                <img class="eNe" src="Events_Management.png"> 
+                <li><a href="firsteventpage.html">Event & Engagement</a></li>
+            </div>
+
+            <div class="Donate">
+                <img class="don" src="Donation.png">
+                <li><a href="#">Donations</a></li>
+            </div>
+        </ul>
+    </div>
+</div>
+
+    <!-- Popup Modal for success message -->
+    <div id="popupModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="popupMessage">🎉Event Created Successfully!</p>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

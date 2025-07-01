@@ -1,0 +1,124 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #003366; /* Dark blue */
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #00ccff; /* Light blue */
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Search Section */
+.search-section {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Space between input and button */
+    margin-bottom: 20px;
+}
+
+#search-input {
+    padding: 10px;
+    width: 80%; /* Set the width to 80% */
+    border: 1px solid #ddd;
+    border-radius: 5px; /* Rounded corners */
+}
+
+#search-button {
+    padding: 10px 20px;
+    background-color: #003366; /* Dark blue */
+    color: white;
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#search-button:hover {
+    background-color: #00ccff; /* Light blue */
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #003366; /* Dark blue */
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Light gray */
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1; /* Light hover effect */
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .search-section {
+        flex-direction: column; /* Stack items on small screens */
+    }
+
+    #search-input {
+        width: 100%; /* Full width on small screens */
+        margin-bottom: 10px; /* Space between input and button */
+    }
+}

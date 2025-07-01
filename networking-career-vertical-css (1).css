@@ -1,0 +1,158 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: #003366;
+    color: white;
+    padding: 20px;
+}
+
+header h1 {
+    color: #FF8C00;
+    margin: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.main-title {
+    background: linear-gradient(to bottom, #e0a953, #6b543b);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 2em;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-section {
+    width: 65%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.right-section {
+    width: 30%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.grid-item {
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.grid-item h3 {
+    margin-top: 0;
+    color: #003366;
+}
+
+.grid-item ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.grid-item ul li {
+    margin-bottom: 10px;
+}
+
+.grid-item ul li a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.grid-item ul li a:hover {
+    text-decoration: underline;
+}
+
+.search-container {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+    font-size: 16px;
+}
+
+.search-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.search-button:hover {
+    background-color: #45a049;
+}
+
+.categories h3 {
+    text-align: center;
+    color: #003366;
+}
+
+.categories ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.categories li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.categories li::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: #ddd;
+    margin-right: 10px;
+    border-radius: 50%;
+}

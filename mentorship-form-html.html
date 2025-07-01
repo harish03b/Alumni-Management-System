@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Mentorship Program</title>
+    <link rel="stylesheet" href="mentorship-form-css.css">
+</head>
+<body>
+    <header>
+        <h1 class="aa">Alumni Association</h1>
+        <nav>
+            <ul>
+                <li><a href="alumini.html">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Events</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="form-section">
+            <h2 class="title">Alumni Mentorship Program</h2>
+            <form id="mentorship-form" action="/mentors" method="post">
+                <div class="form-group">
+                    <h3>Personal Information</h3>
+                    <label for="fullName">Full Name:</label>
+                    <input type="text" id="fullName" name="fullName" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone">
+
+                    <label for="graduationYear">Year of Graduation:</label>
+                    <input type="number" id="graduationYear" name="graduationYear" required>
+                </div>
+
+                <div class="form-group">
+                    <h3>Mentorship Information</h3>
+                    <label for="expertise">Area of Expertise:</label>
+                    <input type="text" id="expertise" name="expertise" required>
+
+                    <label for="mentorshipMethod">Preferred Mentorship Method:</label>
+                    <select id="mentorshipMethod" name="mentorshipMethod" required>
+                        <option value="">Select an option</option>
+                        <option value="in-person">In-Person</option>
+                        <option value="virtual">Virtual (Zoom, Skype)</option>
+                        <option value="email">Email</option>
+                        <option value="phone">Phone</option>
+                    </select>
+
+                    <label for="availability">Availability (Days/Times):</label>
+                    <input type="text" id="availability" name="availability">
+                </div>
+
+                <div class="form-group">
+                    <h3>Additional Information</h3>
+                    <label for="goals">What do you hope to achieve as a mentor?</label>
+                    <textarea id="goals" name="goals" rows="4"></textarea>
+
+                    <label for="comments">Any additional comments:</label>
+                    <textarea id="comments" name="comments" rows="4"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+        </section>
+
+        <aside class="categories-section">
+            <h2>Categories</h2>
+            <ul>
+                <!-- Categories Section -->
+                <div class="user">
+                    <img class="pm" src="user-management.png" height="200px"/>
+                    <li><br>
+                        <a href="#">User Management</a>
+                    </li>
+                </div>
+
+                <div class="Network">
+                    <img class="NaC" src="Network-People-PNG-File.png" height="200px"/>
+                    <li><a href="networking-career-vertical-html (1).html">Networking & Careers</a></li>
+                </div>
+
+                <div class="Event">
+                    <img class="eNe" src="Events_Management.png"  height="200px"/>
+                    <li><a href="#">Event & Engagement</a></li>
+                </div>
+
+                <div class="Donate">
+                    <img class="don" src="Donation.png" height="200px"/>
+                    <li><br><a href="#">Donations</a></li>
+                </div>
+            </ul>
+        </aside>
+    </main>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Association Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="branding">
+                <h1><span class="highlight">Alumni</span> Association</h1>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li class="current"><a href="alumini.html">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Events</a></li>
+                    <li style="float: right;"><a href="signup.html"><img src="User_Profile.png" alt="profile"></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Our Alumni Network</h1>
+            <p>Connect, Contribute, and Thrive with Your Alma Mater</p>
+        </div>
+    </section>
+
+    <section class="modules">
+        <div class="container">
+            <div class="module">
+                <a href="signup.html"><img src="user-management.png" alt="User Management"></a>
+                <h3><a href="signup.html">User Management</a></h3>
+                <p>Update your profile, search the alumni directory, and manage your account.</p>
+            </div>
+            <div class="module">
+                <a href=""><img src="Network-People-PNG-File.png" alt="Networking & Career"></a>
+                <h3><a href="networking-career-vertical-html (1).html">Networking & Career</a></h3>
+                <p>Connect with peers, find job opportunities, and share your success stories.</p>
+            </div>
+            <div class="module">
+                <a href=""><img src="Events_Management.png" alt="Events & Engagement"></a>
+                <h3><a href="firsteventpage.html">Events & Engagement</a></h3>
+                <p>Participate in alumni events, reunions, and provide valuable feedback.</p>
+            </div>
+            <div class="module">
+                <a href=""><img src="Donation.png" alt="Donations"></a>
+                <h3><a href="donation.html">Donations</a></h3>
+                <p>Support your alma mater through our secure donation portal.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Alumni Association Platform. All rights reserved.</p>
+    </footer>
+</body>
+<script>
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('message') === 'login-success') {
+        alert('Login successfully!');
+    }
+</script>
+
+</html>

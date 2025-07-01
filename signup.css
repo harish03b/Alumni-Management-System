@@ -1,0 +1,235 @@
+:root {
+    --primary-color: #003366;
+    --secondary-color: #f4a460;
+    --text-color: #333;
+    --background-color: #f5f5f5;
+    --form-background: #fff5e6;
+    --button-login-color: #f4a460;  /* Color for login state */
+    --button-signup-color: #66ccff; /* Color for signup state */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    padding-top: 70px; /* Add padding to account for fixed header */
+    padding-bottom: 60px; /* Add padding to account for fixed footer */
+}
+
+.container {
+    width: 92%;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 10px;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    border-bottom: var(--secondary-color) 3px solid;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+header .branding {
+    float: left;
+}
+
+header .branding h1 {
+    margin: 0;
+    display: inline-block;
+}
+
+.container img {
+    width: 35px;
+    height: 35px;
+}
+
+header nav {
+    float: right;
+}
+
+header nav ul {
+    display: flex;
+    align-items: center;
+}
+
+header nav ul li {
+    display: inline;
+    margin-left: 20px;
+}
+
+header nav ul li:last-child {
+    margin-left: auto;
+}
+
+header .highlight, header .current a {
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+header a:hover {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Signup Form Styles */
+.signup-section {
+    padding: 40px 0;
+}
+
+.signup-form-container {
+    background-image: linear-gradient(rgb(245, 202, 124), rgb(255, 255, 255));
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+    border:1px solid black;
+}
+
+.signup-form-container h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-group button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.form-group button:hover {
+    background-color: var(--secondary-color);
+}
+
+footer {
+    padding: 20px;
+    color: #ffffff;
+    background-color: var(--primary-color);
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.page-switch {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.switch-container {
+    background-color: var(--primary-color);
+    border-radius: 30px;
+    padding: 5px;
+    display: flex;
+    position: relative;
+    width: 220px;
+    height: 40px;
+    overflow: hidden; /* Hide overflowing parts of the button */
+}
+
+.switch-button {
+    position: absolute;
+    width: 110px;
+    height: 30px;
+    background-color: var(--button-login-color); /* Default to login color */
+    border-radius: 25px;
+    transition: 0.3s ease-in-out;
+    left: 5px;
+}
+
+.switch-text {
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 30px;
+    width: 110px;
+    z-index: 1;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.switch-text.active {
+    color: var(--primary-color);
+}
+
+.switch-text.signup.active ~ .switch-button {
+    left: 105px;
+    background-color: var(--button-signup-color);
+}
+/* Adjust the main content to accommodate the switch */
+main {
+    padding-top: 20px;
+}
+
+@media(max-width: 768px) {
+    body {
+        padding-top: 140px; /* Increase padding for mobile view */
+    }
+
+    header .branding,
+    header nav,
+    header nav li {
+        float: none;
+        text-align: center;
+        width: 100%;
+    }
+
+    header nav ul {
+        flex-direction: column;
+    }
+
+    header nav ul li {
+        margin: 5px 0;
+    }
+
+    .signup-form-container {
+        width: 90%;
+    }
+}

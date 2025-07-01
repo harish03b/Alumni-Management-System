@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Listings</title>
+    <link rel="stylesheet" href="job-application-form-css.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <header>
+        <h1 class="aa">Alumni Association</h1>
+        <nav>
+            <ul>
+                <li><a href="alumini.html">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Events</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="search-section">
+            <h2 class="title">Search Job Listings</h2>
+            <input type="text" id="search-input" placeholder="Search by job title or company name">
+            <button id="search-button">Search</button>
+        </section>
+
+        <section class="table-section">
+            <h2>Job Listings</h2>
+            <table id="jobs-table">
+                <thead>
+                    <tr>
+                        <th>Job Title</th>
+                        <th>Company Name</th>
+                        <th>Location</th>
+                        <th>Description</th>
+                        <th>Contact Person</th>
+                        <th>Contact Email</th>
+                        <th>Application</th>
+                    </tr>
+                </thead>
+                <tbody id="jobs-table-body">
+                    <!-- Job listings will be populated here -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="jobs.js"></script> <!-- Link to your JavaScript file -->
+</body>
+</html>
