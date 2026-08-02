@@ -1,15 +1,20 @@
-# Node
+# Node modules
+node_modules/
 server/node_modules/
 
 # Environment
+.env
 server/.env
 
-# Generated PDFs
+# Generated files
 *.pdf
 
-# Documentation
+# Uploads
+server/uploads/*.pdf
+
+# Docs
 docs/
 
-# OS Files
+# OS files
 .DS_Store
 Thumbs.db
