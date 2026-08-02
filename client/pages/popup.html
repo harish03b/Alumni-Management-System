@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success Message</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .success-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .image-placeholder {
+            font-size: 48px;
+            color: green;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            margin: 10px 0;
+            color: #003366;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        #downloadLink {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #003366;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        #downloadLink:hover {
+            background-color: #0051a1;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="image-placeholder">✓</div>
+        <h2>Success!</h2>
+        <p>Your donation was successful. Thank you for your support!</p>
+        <a id="downloadLink" href="#">Download Receipt (PDF)</a>
+    </div>
+
+    <script>
+        const pdfPath = localStorage.getItem('pdfPath');
+        const downloadLink = document.getElementById('downloadLink');
+
+        if (pdfPath) {
+            downloadLink.href = pdfPath;
+            downloadLink.setAttribute('download', '');
+        } else {
+            downloadLink.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

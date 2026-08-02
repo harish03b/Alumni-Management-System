@@ -1,0 +1,15 @@
+# Node
+server/node_modules/
+
+# Environment
+server/.env
+
+# Generated PDFs
+*.pdf
+
+# Documentation
+docs/
+
+# OS Files
+.DS_Store
+Thumbs.db
