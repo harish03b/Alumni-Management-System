@@ -1,5 +1,5 @@
 require("dotenv").config();
-
+const cookieParser = require("cookie-parser");
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -11,9 +11,9 @@ const path = require("path");
 const multer = require("multer");
 const PDFDocument = require("pdfkit");
 const fs = require("fs");
-
+const authRoutes = require("./routes/auth");
 const connectDB = require("./config/database");
-
+const jobsRoutes = require("./routes/jobs");
 const app = express();
 const port = process.env.PORT || 2501;
 
@@ -26,7 +26,6 @@ connectDB();
 // Middleware
 // ============================================
 app.use(helmet());
-
 app.use(cors({
     origin: true,
     credentials: true
@@ -36,7 +35,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use("/", authRoutes);
+app.use(cookieParser());
+app.use("/", jobsRoutes);
 // ============================================
 // Static Files
 // ============================================
@@ -67,167 +68,17 @@ app.get("/login", (req, res) => {
 // ============================================
 // User Schema
 // ============================================
-
-const userSchema = new mongoose.Schema(
-    {
-        username: {
-            type: String,
-            required: true,
-            unique: true,
-            trim: true
-        },
-
-        password: {
-            type: String,
-            required: true
-        },
-
-        userType: {
-            type: String,
-            required: true
-        },
-
-        firstName: {
-            type: String,
-            required: true
-        },
-
-        lastName: {
-            type: String,
-            required: true
-        },
-
-        email: {
-            type: String,
-            required: true,
-            unique: true,
-            lowercase: true
-        },
-
-        address: {
-            type: String,
-            required: true
-        }
-    },
-    {
-        timestamps: true
-    }
-);
-
-const User = mongoose.model("User", userSchema);
-
+const User = require("./models/User");
 // ============================================
 // Signup
 // ============================================
 
-app.post("/signup", async (req, res) => {
 
-    try {
-
-        const {
-            username,
-            password,
-            userType,
-            firstName,
-            lastName,
-            email,
-            address
-        } = req.body;
-
-        if (password !== req.body["confirm-password"]) {
-            return res.status(400).send("Passwords do not match.");
-        }
-
-        const existingUser = await User.findOne({
-            $or: [
-                { username },
-                { email }
-            ]
-        });
-
-        if (existingUser) {
-            return res.status(400).send("Username or Email already exists.");
-        }
-
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        const newUser = new User({
-            username,
-            password: hashedPassword,
-            userType,
-            firstName,
-            lastName,
-            email,
-            address
-        });
-
-        await newUser.save();
-
-        return res.redirect("/login");
-
-    } catch (error) {
-
-        console.error(error);
-
-        return res.status(500).send("Failed to register user.");
-    }
-
-});
 
 // ============================================
 // Login
 // ============================================
 
-app.post("/login", async (req, res) => {
-
-    try {
-
-        const { username, password } = req.body;
-
-        if (!username || !password) {
-            return res.status(400).send("Username and Password are required.");
-        }
-
-        const user = await User.findOne({ username });
-
-        if (!user) {
-            return res.status(401).send("Invalid Username or Password.");
-        }
-
-        const isMatch = await bcrypt.compare(password, user.password);
-
-        if (!isMatch) {
-            return res.status(401).send("Invalid Username or Password.");
-        }
-
-        const token = jwt.sign(
-            {
-                id: user._id,
-                username: user.username,
-                userType: user.userType
-            },
-            process.env.JWT_SECRET,
-            {
-                expiresIn: "1d"
-            }
-        );
-
-        console.log("User Logged In:", user.username);
-
-        // We'll use JWT properly in a later step
-        // Currently storing it in a cookie is optional.
-
-        return res.redirect("/");
-
-    } catch (error) {
-
-        console.error(error);
-
-        return res.status(500).send("Login Failed.");
-
-    }
-
-});
 
 // ==============================
 // Search Users by Location
@@ -411,71 +262,6 @@ app.get("/mentors", async (req, res) => {
 // ==============================
 // Job Schema
 // ==============================
-const jobSchema = new mongoose.Schema(
-    {
-        jobTitle: {
-            type: String,
-            required: true
-        },
-
-        companyName: {
-            type: String,
-            required: true
-        },
-
-        jobLocation: {
-            type: String,
-            required: true
-        },
-
-        jobDescription: {
-            type: String,
-            required: true
-        },
-
-        qualifications: {
-            type: String,
-            required: true
-        },
-
-        salaryRange: {
-            type: String,
-            default: ""
-        },
-
-        contactPerson: {
-            type: String,
-            required: true
-        },
-
-        contactEmail: {
-            type: String,
-            required: true
-        },
-
-        contactPhone: {
-            type: String,
-            default: ""
-        },
-
-        postingDuration: {
-            type: Number,
-            required: true
-        },
-
-        companyLogo: {
-            type: String,
-            default: ""
-        }
-
-    },
-    {
-        timestamps: true
-    }
-);
-
-const Job = mongoose.model("Job", jobSchema);
-
 
 // ==============================
 // Static Files
@@ -491,37 +277,8 @@ app.use(
 // ===========================================
 // File Upload Configuration (Multer)
 // ===========================================
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, path.join(__dirname, "uploads"));
-    },
 
-    filename: (req, file, cb) => {
-        const uniqueName = `${Date.now()}-${file.originalname}`;
-        cb(null, uniqueName);
-    }
-});
 
-const upload = multer({
-    storage,
-
-    fileFilter: (req, file, cb) => {
-
-        const allowedTypes = [
-            "image/jpeg",
-            "image/png",
-            "image/jpg",
-            "image/webp"
-        ];
-
-        if (allowedTypes.includes(file.mimetype)) {
-            cb(null, true);
-        } else {
-            cb(new Error("Only image files are allowed."));
-        }
-
-    }
-});
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -529,83 +286,11 @@ app.use(express.urlencoded({ extended: true }));
 // ===========================================
 // Post a Job
 // ===========================================
-app.post("/postjob", upload.single("company-logo"), async (req, res) => {
-
-    try {
-
-        const {
-            jobTitle,
-            companyName,
-            jobLocation,
-            jobDescription,
-            qualifications,
-            salaryRange,
-            contactPerson,
-            contactEmail,
-            contactPhone,
-            postingDuration
-        } = req.body;
-
-        const job = new Job({
-            jobTitle,
-            companyName,
-            jobLocation,
-            jobDescription,
-            qualifications,
-            salaryRange,
-            contactPerson,
-            contactEmail,
-            contactPhone,
-            postingDuration,
-            companyLogo: req.file
-                ? `/uploads/${req.file.filename}`
-                : ""
-        });
-
-        await job.save();
-
-        return res.redirect("/pages/network.html");
-
-    } catch (error) {
-
-        console.error("Job Creation Error:", error);
-
-        return res.status(500).json({
-            success: false,
-            message: "Unable to create job posting."
-        });
-
-    }
-
-});
 
 
 // ===========================================
 // Get All Jobs
 // ===========================================
-app.get("/jobs", async (req, res) => {
-
-    try {
-
-        const jobs = await Job.find().sort({
-            createdAt: -1
-        });
-
-        return res.status(200).json(jobs);
-
-    } catch (error) {
-
-        console.error("Fetch Jobs Error:", error);
-
-        return res.status(500).json({
-            success: false,
-            message: "Unable to fetch jobs."
-        });
-
-    }
-
-});
-
 
 // ===========================================
 // Event Schema
