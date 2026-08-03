@@ -16,7 +16,7 @@ const connectDB = require("./config/database");
 const jobsRoutes = require("./routes/jobs");
 const app = express();
 const port = process.env.PORT || 2501;
-
+const eventRoutes = require("./routes/events");
 // ============================================
 // Database Connection
 // ============================================
@@ -38,6 +38,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", authRoutes);
 app.use(cookieParser());
 app.use("/", jobsRoutes);
+app.use("/", eventRoutes);
 // ============================================
 // Static Files
 // ============================================
@@ -260,10 +261,6 @@ app.get("/mentors", async (req, res) => {
 
 
 // ==============================
-// Job Schema
-// ==============================
-
-// ==============================
 // Static Files
 // ==============================
 
@@ -273,201 +270,30 @@ app.use(
     )
 );
 
-
-// ===========================================
-// File Upload Configuration (Multer)
-// ===========================================
-
-
-
 app.use(express.urlencoded({ extended: true }));
 
 
 // ===========================================
-// Post a Job
-// ===========================================
-
-
-// ===========================================
-// Get All Jobs
-// ===========================================
-
-// ===========================================
 // Event Schema
 // ===========================================
-const eventSchema = new mongoose.Schema(
-    {
-        title: {
-            type: String,
-            required: true
-        },
-
-        type: {
-            type: String,
-            required: true
-        },
-
-        mode: {
-            type: String,
-            enum: ["online", "offline"],
-            required: true
-        },
-
-        date: {
-            type: Date,
-            required: true
-        },
-
-        time: {
-            type: String,
-            required: true
-        }
-
-    },
-    {
-        timestamps: true,
-        collection: "Create_event"
-    }
-);
-
-const Event = mongoose.model("Event", eventSchema);
 
 
 // ===========================================
 // Create Event
 // ===========================================
-app.post("/api/events", async (req, res) => {
 
-    try {
-
-        const {
-            title,
-            type,
-            mode,
-            date,
-            time
-        } = req.body;
-
-        if (!title || !type || !mode || !date || !time) {
-
-            return res.status(400).json({
-                success: false,
-                message: "All fields are required."
-            });
-
-        }
-
-        const event = new Event({
-            title,
-            type,
-            mode,
-            date,
-            time
-        });
-
-        await event.save();
-
-        return res.redirect("/pages/firsteventpage.html");
-
-    } catch (error) {
-
-        console.error("Create Event Error:", error);
-
-        return res.status(500).json({
-            success: false,
-            message: "Unable to create event."
-        });
-
-    }
-
-});
 
 
 // ===========================================
 // Get All Events
 // ===========================================
-app.get("/api/events", async (req, res) => {
-
-    try {
-
-        const events = await Event.find().sort({
-            date: 1
-        });
-
-        return res.status(200).json(events);
-
-    } catch (error) {
-
-        console.error("Fetch Events Error:", error);
-
-        return res.status(500).json({
-            success: false,
-            message: "Unable to fetch events."
-        });
-
-    }
-
-});
 
 // ===========================================
 // Register for Event
 // ===========================================
-app.post("/api/events/register", async (req, res) => {
-
-    try {
-
-        const { eventId, userId } = req.body;
-
-        if (!eventId || !userId) {
-            return res.status(400).json({
-                success: false,
-                message: "Event ID and User ID are required."
-            });
-        }
-
-        const event = await Event.findById(eventId);
-
-        if (!event) {
-            return res.status(404).json({
-                success: false,
-                message: "Event not found."
-            });
-        }
-
-        const alreadyRegistered = event.registrations.some(
-            id => id.toString() === userId
-        );
-
-        if (alreadyRegistered) {
-            return res.status(400).json({
-                success: false,
-                message: "You have already registered for this event."
-            });
-        }
-
-        event.registrations.push(userId);
-
-        await event.save();
-
-        return res.status(200).json({
-            success: true,
-            message: "Event registration successful."
-        });
-
-    } catch (error) {
-
-        console.error("Event Registration Error:", error);
-
-        return res.status(500).json({
-            success: false,
-            message: "Unable to register for event."
-        });
-
-    }
-
+app.get("/events", (req, res) => {
+    res.sendFile(path.join(clientPath, "pages", "firsteventpage.html"));
 });
-
-
 // ===========================================
 // Donation Schema
 // ===========================================
